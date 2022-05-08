@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "core-components-app": "apps/core-components-app",
+    "core-components-app-e2e": "apps/core-components-app-e2e"
+  }
+}
