@@ -39,6 +39,8 @@
     "@nrwl/linter": "13.10.4",
     "@nrwl/workspace": "13.10.4",
     "@nxext/stencil": "^13.2.3",
+    "@nxext/svelte": "^13.3.1",
+    "@stencil/angular-output-target": "^0.4.0",
     "@stencil/core": "^2.14.0",
     "@stencil/sass": "1.5.2",
     "@types/jest": "27.0.2",
