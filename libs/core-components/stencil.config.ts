@@ -31,9 +31,9 @@ export const config: Config = {
 
     angularOutputTarget({
       componentCorePackage: '@core-components/core-components',
-      directivesProxyFile:
-        '../../../libs/core-components-angular/src/generated/directives/proxies.ts',
-      valueAccessorConfigs: angularValueAccessorBindings,
+      directivesProxyFile: '../../../libs/core-components-angular/src/generated/directives/proxies.ts',
+      directivesArrayFile: '../../../libs/core-components-angular/src/generated/directives/index.ts',
+      valueAccessorConfigs: angularValueAccessorBindings
     }),
   ],
 };
