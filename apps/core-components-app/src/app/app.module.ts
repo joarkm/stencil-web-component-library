@@ -4,12 +4,11 @@ import { CoreComponentsAngularModule } from '@core-components/core-components-an
 import { defineCustomElements } from "dist/libs/core-components/loader";
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 
 defineCustomElements();
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, CoreComponentsAngularModule],
   providers: [],
   bootstrap: [AppComponent]
