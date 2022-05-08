@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@core-components/core-components": ["dist/libs/core-components"],
+      "@core-components/core-components/loader": [
+        "dist/libs/core-components/loader"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
