@@ -6,56 +6,55 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface SegmentedControl {
+        "isSelected": boolean;
+        "optionLabel": string;
+    }
+    interface SegmentedControlGroup {
+        "optionLabels": string[];
+        "selectedOption": number;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLSegmentedControlElement extends Components.SegmentedControl, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLSegmentedControlElement: {
+        prototype: HTMLSegmentedControlElement;
+        new (): HTMLSegmentedControlElement;
+    };
+    interface HTMLSegmentedControlGroupElement extends Components.SegmentedControlGroup, HTMLStencilElement {
+    }
+    var HTMLSegmentedControlGroupElement: {
+        prototype: HTMLSegmentedControlGroupElement;
+        new (): HTMLSegmentedControlGroupElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "segmented-control": HTMLSegmentedControlElement;
+        "segmented-control-group": HTMLSegmentedControlGroupElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface SegmentedControl {
+        "isSelected"?: boolean;
+        "onSelected"?: (event: CustomEvent<void>) => void;
+        "optionLabel"?: string;
+    }
+    interface SegmentedControlGroup {
+        "onSelected"?: (event: CustomEvent<string>) => void;
+        "optionLabels"?: string[];
+        "selectedOption"?: number;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "segmented-control": SegmentedControl;
+        "segmented-control-group": SegmentedControlGroup;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "segmented-control": LocalJSX.SegmentedControl & JSXBase.HTMLAttributes<HTMLSegmentedControlElement>;
+            "segmented-control-group": LocalJSX.SegmentedControlGroup & JSXBase.HTMLAttributes<HTMLSegmentedControlGroupElement>;
         }
     }
 }

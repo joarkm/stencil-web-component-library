@@ -1,20 +1,24 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('my-component', () => {
+describe('segmented-control-group', () => {
   it('renders', async () => {
     const page = await newE2EPage();
 
-    await page.setContent('<my-component></my-component>');
-    const element = await page.find('my-component');
+    await page.setContent(
+      '<segmented-control-group></segmented-control-group>'
+    );
+    const element = await page.find('segmented-control-group');
     expect(element).toHaveClass('hydrated');
   });
 
   it('renders changes to the name data', async () => {
     const page = await newE2EPage();
 
-    await page.setContent('<my-component></my-component>');
-    const component = await page.find('my-component');
-    const element = await page.find('my-component >>> div');
+    await page.setContent(
+      '<segmented-control-group></segmented-control-group>'
+    );
+    const component = await page.find('segmented-control-group');
+    const element = await page.find('segmented-control-group >>> div');
     expect(element.textContent).toEqual(`Hello, World! I'm `);
 
     component.setProperty('first', 'James');

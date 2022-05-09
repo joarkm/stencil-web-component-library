@@ -1,36 +1,36 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { MyComponent } from './my-component';
+import { SegmentedControl } from './segmented-control';
 
-describe('my-component', () => {
+describe('segmented-control', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [MyComponent],
-      html: '<my-component></my-component>',
+      components: [SegmentedControl],
+      html: '<segmented-control></segmented-control>',
     });
     expect(root).toEqualHtml(`
-      <my-component>
+      <segmented-control>
         <mock:shadow-root>
           <div>
             Hello, World! I'm
           </div>
         </mock:shadow-root>
-      </my-component>
+      </segmented-control>
     `);
   });
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [MyComponent],
-      html: `<my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>`,
+      components: [SegmentedControl],
+      html: `<segmented-control first="Stencil" last="'Don't call me a framework' JS"></segmented-control>`,
     });
     expect(root).toEqualHtml(`
-      <my-component first="Stencil" last="'Don't call me a framework' JS">
+      <segmented-control first="Stencil" last="'Don't call me a framework' JS">
         <mock:shadow-root>
           <div>
             Hello, World! I'm Stencil 'Don't call me a framework' JS
           </div>
         </mock:shadow-root>
-      </my-component>
+      </segmented-control>
     `);
   });
 });

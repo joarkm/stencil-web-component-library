@@ -1,0 +1,14 @@
+.segmented-control-group {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  // border: 1px solid #ccc;
+  box-shadow: 0 0 2px #ccc inset;
+  border-radius: 5px;
+
+  // :last-child:not([is-selected]) {
+  //   border: 1px solid #ccc;
+  //   border-top-right-radius: 5px;
+  //   border-bottom-right-radius: 5px;
+  // }
+}
