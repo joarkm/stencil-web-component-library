@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CoreComponentsAngularModule } from '@core-components/core-components-angular';
-import { defineCustomElements } from "dist/libs/core-components/loader";
+import { defineCustomElements } from 'dist/libs/core-components/loader';
 
 import { AppComponent } from './app.component';
+import { AppSegmentedControlComponent } from './app-segmented-control/app-segmented-control.component';
 
 defineCustomElements();
 
@@ -13,10 +14,10 @@ defineCustomElements();
     BrowserModule,
     CoreComponentsAngularModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, AppSegmentedControlComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

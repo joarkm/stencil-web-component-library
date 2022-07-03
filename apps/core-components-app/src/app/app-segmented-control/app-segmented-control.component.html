@@ -1,0 +1,17 @@
+<h3>--Angular here--</h3>
+<ng-container [formGroup]="formGroup">
+    <ng-container formArrayName="options">
+        <div *ngFor="let option of options.controls; let label = index">
+            <label>Option {{ (label + 1) }}: </label>
+            <input type="text" [formControlName]="label" />
+        </div>
+    </ng-container>
+</ng-container>
+
+<br>
+<label><b>Option selected: </b>{{ selectedOption }}</label>
+
+<br>
+<hr>
+<h3>--Stencil here--</h3>
+<segmented-control-group [optionLabels]="options.value" [selectedOption]="selectedOptionIndex" (selected)="onOptionSelected($event)"></segmented-control-group>
