@@ -118,7 +118,7 @@ menu {
         }
       }
       
-      &--right:hover {
+      &--right:hover, &--right#{&}--active {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         
