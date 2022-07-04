@@ -19,6 +19,7 @@ menu {
   height: calc(100vh - 32px); // TODO: Remove
   padding: 0;
   width: 200px;
+  transition: .5s;
   
   &--collapsed {
     width: 68px;
