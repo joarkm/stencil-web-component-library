@@ -6,6 +6,7 @@ import { defineCustomElements } from 'dist/libs/core-components/loader';
 
 import { AppComponent } from './app.component';
 import { AppSegmentedControlComponent } from './app-segmented-control/app-segmented-control.component';
+import { AppSidebarMenuComponent } from './app-sidebar-menu/app-sidebar-menu.component';
 
 defineCustomElements();
 
@@ -16,7 +17,11 @@ defineCustomElements();
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [AppComponent, AppSegmentedControlComponent],
+  declarations: [
+    AppComponent,
+    AppSegmentedControlComponent,
+    AppSidebarMenuComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
