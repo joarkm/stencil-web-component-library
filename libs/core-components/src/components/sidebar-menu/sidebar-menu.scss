@@ -16,7 +16,7 @@ menu {
   display: flex;
   flex-flow: column;
   border-radius: 6px;
-  height: calc(100vh - 32px); // TODO: Remove
+  height: calc(100vh - 32px);
   padding: 0;
   width: 200px;
   transition: .5s;
@@ -33,13 +33,26 @@ menu {
   
     &-item {
       position: relative;
-      // display: flex;
-      // flex-direction: row;
-      display: grid;
-      grid-auto-flow: column;
-      justify-content: start;
-      align-items: center;
-      gap: 20px;
+
+      &-grid {
+        display: grid;
+        grid-auto-flow: column;
+        
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+      }
+
+      &--right &-grid {
+        justify-content: end;
+      }
+
+      &__label {
+        width: 112px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       padding: 20px;
       
       list-style: none;
@@ -48,6 +61,7 @@ menu {
   
       color: var(--fg-color);
       background-color: var(--bg-color);
+
   
       &__tooltip {
         opacity: 0;
@@ -142,10 +156,15 @@ menu {
           box-shadow: -7.5px -7.5px 0 7.5px white;
         }
       }
+
+      &--right &__icon {
+        order: 1;
+      }
       
       &__icon {
-        height: 28px;
+        min-height: 28px;
         width: 28px;
+        flex-shrink: 0;
         background-color: var(--fg-color);
       }
   

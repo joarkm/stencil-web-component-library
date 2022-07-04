@@ -44,9 +44,11 @@ export class SidebarMenu {
               }}
               aria-label={label}
               onClick={() => this.setActive(idx)}>
-                <div class="menu-list-item__icon"></div>
                 <span class="menu-list-item__tooltip">{label}</span>
-                <span class="menu-list-item__label">{label}</span>
+                <div class="menu-list-item-grid">
+                  <div class="menu-list-item__icon"></div>
+                  <span class="menu-list-item__label">{label}</span>
+                </div>
             </li>
           ))}
         </menu>
