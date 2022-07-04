@@ -207,6 +207,8 @@ menu {
   }
   
   &--right &__toggle {
+    align-self: flex-end;
+
     &::before {
       transform: translateY(-4px) rotate(135deg);
     }
