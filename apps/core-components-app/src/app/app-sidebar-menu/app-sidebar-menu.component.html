@@ -1,1 +1,16 @@
-<sidebar-menu></sidebar-menu>
+<main
+    class="app-sidebar-menu"
+    [ngClass]="{
+        'app-sidebar-menu--right': placement === 'right'
+    }">
+        <sidebar-menu [placement]="placement"></sidebar-menu>
+
+        <section class="app-sidebar-menu-placement">
+            <p>Sidebar placement:</p>
+            <segmented-control-group
+                [optionLabels]="availablePlacements"
+                [selectedOption]="placement"
+                (selected)="onOptionSelected($event)">
+            </segmented-control-group>
+        </section>
+</main>

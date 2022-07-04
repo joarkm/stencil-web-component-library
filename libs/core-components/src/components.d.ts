@@ -15,6 +15,7 @@ export namespace Components {
         "selectedOption": number;
     }
     interface SidebarMenu {
+        "placement": 'left' | 'right';
     }
 }
 declare global {
@@ -54,6 +55,7 @@ declare namespace LocalJSX {
         "selectedOption"?: number;
     }
     interface SidebarMenu {
+        "placement"?: 'left' | 'right';
     }
     interface IntrinsicElements {
         "segmented-control": SegmentedControl;

@@ -1,4 +1,4 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'sidebar-menu',
@@ -8,8 +8,11 @@ import { Component, h, State } from '@stencil/core';
 export class SidebarMenu {
 
   @State() isCollapsed = true;
+  @State() activeIndex = -1;
 
-  menuItemLetters: string[] = new Array<string>(10).fill('A')
+  @Prop() placement: 'left' | 'right' = 'left';
+
+  menuItemLetters: string[] = new Array<string>(26).fill('A')
     .map((c, idx) => String.fromCharCode(c.charCodeAt(0) + (1*idx)));
 
   menuItemLabels: string[] = this.menuItemLetters
@@ -19,34 +22,41 @@ export class SidebarMenu {
     this.isCollapsed = !this.isCollapsed;
   }
 
+  setActive(index: number): void {
+    this.activeIndex = index;
+  }
+
   render() {
     return (
       <aside class={{
         'menu': true,
-        'menu--collapsed': this.isCollapsed
+        'menu--collapsed': this.isCollapsed,
+        'menu--right': this.placement === 'right'
       }}>
         <menu class="menu-list">
-          {this.menuItemLabels.map(label => (
+          {this.menuItemLabels.map((label, idx) => (
             <li
               class={{
                 'menu-list-item': true,
-                'menu-list-item--collapsed': this.isCollapsed
+                'menu-list-item--collapsed': this.isCollapsed,
+                'menu-list-item--active': this.activeIndex === idx,
+                'menu-list-item--right': this.placement === 'right'
               }}
-              aria-label={label}>
+              aria-label={label}
+              onClick={() => this.setActive(idx)}>
                 <div class="menu-list-item__icon"></div>
                 <span class="menu-list-item__tooltip">{label}</span>
                 <span class="menu-list-item__label">{label}</span>
             </li>
           ))}
         </menu>
-          <span
-            class={{
-              'menu-list__toggle': true,
-              'menu-list__toggle--expanded': !this.isCollapsed
-            }}
-            onClick={() => this.toggleExpand()}>
-            {/* {this.isCollapsed ? MenuExpansion.EXPAND : MenuExpansion.OPEN} */}
-          </span>
+        <span
+          class={{
+            'menu__toggle': true,
+            'menu__toggle--expanded': !this.isCollapsed
+          }}
+          onClick={() => this.toggleExpand()}>
+        </span>
       </aside>
     );
   }
