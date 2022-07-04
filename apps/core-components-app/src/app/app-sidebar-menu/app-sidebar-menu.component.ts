@@ -6,13 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app-sidebar-menu.component.scss'],
 })
 export class AppSidebarMenuComponent {
-  placement: 'left' | 'right' = 'right';
   availablePlacements: ('left' | 'right')[] = ['left', 'right'];
+  placement = this.availablePlacements[0];
 
   public onOptionSelected(e: Event): void {
     console.log(`Event:`, e);
-    const option = (e as CustomEvent).detail;
-    console.log(`Selected option: ${option}`);
-    this.placement = option;
+    const placement = (e as CustomEvent).detail;
+    console.log(`Selected option: ${placement}`);
+    this.placement = placement;
   }
 }
