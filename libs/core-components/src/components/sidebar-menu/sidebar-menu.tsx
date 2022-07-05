@@ -1,4 +1,5 @@
 import { Component, h, Prop, State, Watch } from '@stencil/core';
+import { debounce } from '../../utils/utils';
 
 @Component({
   tag: 'sidebar-menu',
@@ -10,6 +11,7 @@ export class SidebarMenu {
   @State() isCollapsed = true;
   @State() activeIndex = -1;
   @State() expandDirection: 'left' | 'right' = 'right';
+  @State() scrolling = false;
 
   @Prop() placement: 'left' | 'right' = 'left';
   @Watch('placement') onPlacementChange(newPlacement: 'left' | 'right') {
@@ -20,6 +22,27 @@ export class SidebarMenu {
       this.expandDirection = 'left';
     }
   }
+
+  scrollHandler(_event: Event) {
+    if (!this.scrolling) {
+      console.log('Setting scrolling to true');
+      this.scrolling = true;
+      
+      const menuList = document.querySelector('sidebar-menu').shadowRoot.querySelector('.menu-list');
+      var scrollThumbBgColor = window.getComputedStyle(menuList, "::-webkit-scrollbar-thumb").backgroundColor;
+      console.log({ scrollThumbBgColor });
+    }
+    this.hideScrollBarOnScrollEnd();
+  }
+
+  hideScrollBarOnScrollEnd = debounce(() => {
+    this.scrolling = false;
+    console.log('Setting scrolling to false');
+
+    const menuList = document.querySelector('sidebar-menu').shadowRoot.querySelector('.menu-list');
+    var scrollThumbBgColor = window.getComputedStyle(menuList, "::-webkit-scrollbar-thumb").backgroundColor;
+    console.log({ scrollThumbBgColor });
+  }, 300);
 
   menuItemLetters: string[] = new Array<string>(26).fill('A')
     .map((c, idx) => String.fromCharCode(c.charCodeAt(0) + (1*idx)));
@@ -42,7 +65,12 @@ export class SidebarMenu {
         'menu--collapsed': this.isCollapsed,
         'menu--right': this.placement === 'right'
       }}>
-        <menu class="menu-list">
+        <menu onScroll={e => this.scrollHandler(e)}
+          class={{
+            'menu-list': true,
+            'menu-list--scrolling': this.scrolling,
+          }}
+        >
           {this.menuItemLabels.map((label, idx) => (
             <li
               class={{
