@@ -12,11 +12,12 @@ export class SidebarMenu {
 
   @Prop() placement: 'left' | 'right' = 'left';
 
-  menuItemLetters: string[] = new Array<string>(26).fill('A')
-    .map((c, idx) => String.fromCharCode(c.charCodeAt(0) + (1*idx)));
-
-  menuItemLabels: string[] = this.menuItemLetters
-    .map(letter => new Array(10).fill(letter).join(''));  
+  menuItemLabels: string[] = [
+    'Previous',
+    'Play/pause',
+    'Next',
+    'Stop'
+  ];
 
   toggleExpand(): void {
     this.isCollapsed = !this.isCollapsed;
@@ -59,6 +60,31 @@ export class SidebarMenu {
           }}
           onClick={() => this.toggleExpand()}>
         </span>
+        <svg width="0" height="0">
+          <defs>
+            <clipPath id="pauseClip">
+              <polygon points="28,4 28,22 26,22 26,4"/>
+              <polygon points="22,4 22,22 20,22 20,4" />
+              <polygon points="2,4 18,14 2,22" />
+            </clipPath>
+          </defs>
+        </svg>
+        <svg width="0" height="0">
+          <defs>
+            <clipPath id="previousClip">
+              <polygon points="0,14 14,4 14,22"/>
+              <polygon points="14,14 28,4 28,22"/>
+            </clipPath>
+          </defs>
+        </svg>
+        <svg width="0" height="0">
+          <defs>
+            <clipPath id="nextClip">
+              <polygon points="0,4 14,14 0,22"/>
+              <polygon points="14,4 14,22 28,14"/>
+            </clipPath>
+          </defs>
+        </svg>
       </aside>
     );
   }

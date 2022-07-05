@@ -16,9 +16,8 @@ menu {
   display: flex;
   flex-flow: column;
   border-radius: 6px;
-  height: calc(100vh - 32px);
   padding: 0;
-  width: 200px;
+  width: 168px;
   transition: .5s;
   
   &--collapsed {
@@ -48,7 +47,7 @@ menu {
       }
 
       &__label {
-        width: 112px;
+        width: 80px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -168,15 +167,14 @@ menu {
         background-color: var(--fg-color);
       }
   
-      &:nth-child(3n+1) &__icon {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+      &:nth-child(4n+1) &__icon {
+        clip-path: url(#previousClip);
       }
-      &:nth-child(3n+2) &__icon {
-        clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+      &:nth-child(4n+2) &__icon {
+        clip-path: url(#pauseClip);
       }
-      &:nth-child(3n+3) &__icon {
-        clip-path: polygon(0 50%, 10% 40%, 40% 40%, 15% 0, 85% 0, 60% 40%, 90% 40%, 100% 50%, 90% 60%, 100% 60%, 60% 60%, 85% 100%, 15% 100%, 40% 60%, 10% 60%
-        );
+      &:nth-child(4n+3) &__icon {
+        clip-path: url(#nextClip);
       }
   
     }
