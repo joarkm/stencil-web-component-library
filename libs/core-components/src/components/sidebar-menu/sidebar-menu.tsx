@@ -1,4 +1,5 @@
 import { Component, h, Prop, State, Watch } from '@stencil/core';
+import { debounce } from '../../utils/utils';
 
 @Component({
   tag: 'sidebar-menu',
@@ -10,6 +11,7 @@ export class SidebarMenu {
   @State() isCollapsed = true;
   @State() activeIndex = -1;
   @State() expandDirection: 'left' | 'right' = 'right';
+  @State() scrolling = false;
 
   @Prop() placement: 'left' | 'right' = 'left';
   @Watch('placement') onPlacementChange(newPlacement: 'left' | 'right') {
@@ -27,6 +29,17 @@ export class SidebarMenu {
     'Next',
     'Stop'
   ];
+  scrollHandler(_event: Event) {
+    if (!this.scrolling) {
+      this.scrolling = true;
+    }
+    this.hideScrollBarOnScrollEnd();
+  }
+
+  hideScrollBarOnScrollEnd = debounce(() => {
+    this.scrolling = false;
+  }, 300);
+
 
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
@@ -43,7 +56,12 @@ export class SidebarMenu {
         'menu--collapsed': this.isCollapsed,
         'menu--right': this.placement === 'right'
       }}>
-        <menu class="menu-list">
+        <menu onScroll={e => this.scrollHandler(e)}
+          class={{
+            'menu-list': true,
+            'menu-list--scrolling': this.scrolling,
+          }}
+        >
           {this.menuItemLabels.map((label, idx) => (
             <li
               class={{
