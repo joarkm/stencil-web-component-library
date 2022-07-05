@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'sidebar-menu',
@@ -9,8 +9,17 @@ export class SidebarMenu {
 
   @State() isCollapsed = true;
   @State() activeIndex = -1;
+  @State() expandDirection: 'left' | 'right' = 'right';
 
   @Prop() placement: 'left' | 'right' = 'left';
+  @Watch('placement') onPlacementChange(newPlacement: 'left' | 'right') {
+    if (newPlacement === 'left') {
+      this.expandDirection = 'right';
+    }
+    if (newPlacement === 'right') {
+      this.expandDirection = 'left';
+    }
+  }
 
   menuItemLabels: string[] = [
     'Previous',
@@ -19,7 +28,7 @@ export class SidebarMenu {
     'Stop'
   ];
 
-  toggleExpand(): void {
+  toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
   }
 
@@ -53,13 +62,10 @@ export class SidebarMenu {
             </li>
           ))}
         </menu>
-        <span
-          class={{
-            'menu__toggle': true,
-            'menu__toggle--expanded': !this.isCollapsed
-          }}
-          onClick={() => this.toggleExpand()}>
-        </span>
+        <expand-button class="menu__toggle"
+          direction={this.expandDirection}
+          onClick={() => this.toggleCollapsed()}>
+        </expand-button>
         <svg width="0" height="0">
           <defs>
             <clipPath id="pauseClip">

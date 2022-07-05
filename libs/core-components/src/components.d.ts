@@ -6,6 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface ExpandButton {
+        /**
+          * The direction to expand. E.g. 'right' means it goes from '<' to '>', from left to right.
+         */
+        "direction": 'right' | 'left' | 'up' | 'down';
+        "isExpanded": boolean;
+    }
     interface SegmentedControl {
         "isSelected": boolean;
         "optionLabel": string;
@@ -19,6 +26,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLExpandButtonElement extends Components.ExpandButton, HTMLStencilElement {
+    }
+    var HTMLExpandButtonElement: {
+        prototype: HTMLExpandButtonElement;
+        new (): HTMLExpandButtonElement;
+    };
     interface HTMLSegmentedControlElement extends Components.SegmentedControl, HTMLStencilElement {
     }
     var HTMLSegmentedControlElement: {
@@ -38,12 +51,20 @@ declare global {
         new (): HTMLSidebarMenuElement;
     };
     interface HTMLElementTagNameMap {
+        "expand-button": HTMLExpandButtonElement;
         "segmented-control": HTMLSegmentedControlElement;
         "segmented-control-group": HTMLSegmentedControlGroupElement;
         "sidebar-menu": HTMLSidebarMenuElement;
     }
 }
 declare namespace LocalJSX {
+    interface ExpandButton {
+        /**
+          * The direction to expand. E.g. 'right' means it goes from '<' to '>', from left to right.
+         */
+        "direction"?: 'right' | 'left' | 'up' | 'down';
+        "isExpanded"?: boolean;
+    }
     interface SegmentedControl {
         "isSelected"?: boolean;
         "onSelected"?: (event: CustomEvent<void>) => void;
@@ -58,6 +79,7 @@ declare namespace LocalJSX {
         "placement"?: 'left' | 'right';
     }
     interface IntrinsicElements {
+        "expand-button": ExpandButton;
         "segmented-control": SegmentedControl;
         "segmented-control-group": SegmentedControlGroup;
         "sidebar-menu": SidebarMenu;
@@ -67,6 +89,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "expand-button": LocalJSX.ExpandButton & JSXBase.HTMLAttributes<HTMLExpandButtonElement>;
             "segmented-control": LocalJSX.SegmentedControl & JSXBase.HTMLAttributes<HTMLSegmentedControlElement>;
             "segmented-control-group": LocalJSX.SegmentedControlGroup & JSXBase.HTMLAttributes<HTMLSegmentedControlGroupElement>;
             "sidebar-menu": LocalJSX.SidebarMenu & JSXBase.HTMLAttributes<HTMLSidebarMenuElement>;
