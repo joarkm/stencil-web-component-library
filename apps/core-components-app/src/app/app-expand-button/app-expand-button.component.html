@@ -1,0 +1,10 @@
+<section class="app-expand-button-direction">
+    <p>Expand direction:</p>
+    <segmented-control-group
+        [optionLabels]="availableExpandDirections"
+        [selectedOption]="3"
+        (selected)="onOptionSelected($event)">
+    </segmented-control-group>
+</section>
+
+<expand-button [direction]="expandDirection"></expand-button>
