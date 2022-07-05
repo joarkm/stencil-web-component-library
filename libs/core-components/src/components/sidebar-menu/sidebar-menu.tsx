@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'sidebar-menu',
@@ -9,8 +9,17 @@ export class SidebarMenu {
 
   @State() isCollapsed = true;
   @State() activeIndex = -1;
+  @State() expandDirection: 'left' | 'right' = 'right';
 
   @Prop() placement: 'left' | 'right' = 'left';
+  @Watch('placement') onPlacementChange(newPlacement: 'left' | 'right') {
+    if (newPlacement === 'left') {
+      this.expandDirection = 'right';
+    }
+    if (newPlacement === 'right') {
+      this.expandDirection = 'left';
+    }
+  }
 
   menuItemLetters: string[] = new Array<string>(26).fill('A')
     .map((c, idx) => String.fromCharCode(c.charCodeAt(0) + (1*idx)));
@@ -18,7 +27,7 @@ export class SidebarMenu {
   menuItemLabels: string[] = this.menuItemLetters
     .map(letter => new Array(10).fill(letter).join(''));  
 
-  toggleExpand(): void {
+  toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
   }
 
@@ -52,13 +61,10 @@ export class SidebarMenu {
             </li>
           ))}
         </menu>
-        <span
-          class={{
-            'menu__toggle': true,
-            'menu__toggle--expanded': !this.isCollapsed
-          }}
-          onClick={() => this.toggleExpand()}>
-        </span>
+        <expand-button class="menu__toggle"
+          direction={this.expandDirection}
+          onClick={() => this.toggleCollapsed()}>
+        </expand-button>
       </aside>
     );
   }

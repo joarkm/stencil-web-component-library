@@ -13,6 +13,19 @@
 | `isExpanded` | `is-expanded` |                                                                                          | `boolean`                             | `false`   |
 
 
+## Dependencies
+
+### Used by
+
+ - [sidebar-menu](../sidebar-menu)
+
+### Graph
+```mermaid
+graph TD;
+  sidebar-menu --> expand-button
+  style expand-button fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

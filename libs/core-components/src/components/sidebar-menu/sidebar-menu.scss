@@ -184,65 +184,13 @@ menu {
   }
 
   &__toggle {
-    position: relative;
-    cursor: pointer;
-
-    margin: 14px;
-    background-color: #{$fg-color};
-    width: 40px;
-    min-height: 40px;
-    border-radius: 50%;
-
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    &::before, &::after {
-      content: '';
-      position: absolute;
-      width: 12px;
-      height: 3px;
-      border-radius: 3px;
-      // For some reason the pseudo elements does not have access to the css variables declared in ::host or if declared on parent element (.menu)
-      background-color: #{$bg-color};
-      transition: .5s;
-    }
-
-    &::before {
-      transform: translateY(-4px) rotate(45deg);
-    }
-    &::after {
-      transform: translateY(4px) rotate(-45deg);
-    }
-
-    &--expanded {
-      &::before {
-        transform: translateY(-4px) rotate(135deg);
-      }
-      &::after {
-        transform: translateY(4px) rotate(-135deg);
-      }
-    }
+    justify-content: flex-start;
   }
-  
+    
   &--right &__toggle {
     align-self: flex-end;
-
-    &::before {
-      transform: translateY(-4px) rotate(135deg);
-    }
-    &::after {
-      transform: translateY(4px) rotate(45deg);
-    }
-  
-    &--expanded {
-      &::before {
-        transform: translateY(-4px) rotate(45deg);
-      }
-      &::after {
-        transform: translateY(4px) rotate(135deg);
-      }
-    }
   }
 }
 
