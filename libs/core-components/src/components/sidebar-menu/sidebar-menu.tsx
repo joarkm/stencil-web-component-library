@@ -85,6 +85,13 @@ export class SidebarMenu {
             </clipPath>
           </defs>
         </svg>
+        <svg width="0" height="0">
+          <defs>
+            <clipPath id="stopClip">
+              <polygon points="4,4 24,4 24,24 4,24"/>
+            </clipPath>
+          </defs>
+        </svg>
       </aside>
     );
   }

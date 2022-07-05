@@ -176,6 +176,9 @@ menu {
       &:nth-child(4n+3) &__icon {
         clip-path: url(#nextClip);
       }
+      &:nth-child(4n+4) &__icon {
+        clip-path: url(#stopClip);
+      }
   
     }
   
