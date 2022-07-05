@@ -16,7 +16,7 @@ menu {
   display: flex;
   flex-flow: column;
   border-radius: 6px;
-  height: calc(100vh - 32px);
+  max-height: calc(100vh - 32px);
   padding: 0;
   width: 200px;
   transition: .5s;
