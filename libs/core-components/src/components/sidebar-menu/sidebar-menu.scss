@@ -1,0 +1,221 @@
+$bg-color: rgb(4, 92, 207);
+$fg-color: white;
+
+:host {
+  display: block;
+  --bg-color: #{$bg-color};
+  --fg-color: #{$fg-color};
+}
+
+menu {
+  padding: 0;
+}
+
+.menu {
+  background-color: var(--bg-color);
+  display: flex;
+  flex-flow: column;
+  border-radius: 6px;
+  max-height: calc(100vh - 32px);
+  padding: 0;
+  width: 200px;
+  transition: .5s;
+  
+  &--collapsed {
+    width: 68px;
+  }
+  
+  &-list {
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      border-radius: 2px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+
+    &--scrolling::-webkit-scrollbar-thumb {
+      background-color: white;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    transition: width 1s;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    gap: 10px;
+  
+    &-item {
+      position: relative;
+
+      &-grid {
+        display: grid;
+        grid-auto-flow: column;
+        
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+      }
+
+      &--right &-grid {
+        justify-content: end;
+      }
+
+      &__label {
+        width: 112px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      padding: 20px;
+      
+      list-style: none;
+  
+      cursor: pointer;
+  
+      color: var(--fg-color);
+      background-color: var(--bg-color);
+
+  
+      &__tooltip {
+        z-index: 1;
+        opacity: 0;
+        visibility: hidden;
+        position: fixed;
+        left: 100px;
+        background-color: var(--bg-color);
+        color: var(--fg-color);
+        padding: 10px;
+        border-radius: 6px;
+        overflow: visible;
+        transition: .5s ease-in-out opacity;
+  
+        &::before {
+          content: '';
+          position: absolute;
+          left: -4px;
+          width: 1rem;
+          height: 1rem;
+          transform: rotate(45deg);
+          background-color: white;
+          border-radius: 3px;
+          clip-path: polygon(0 0, 0 100%, 100% 100%);
+        }
+      }
+  
+      &--right &__tooltip {
+        right: 100px;
+        left: auto;
+  
+        &::before {
+          left: auto;
+          right: -4px;
+          transform: rotate(225deg);
+        }
+      }
+      
+      &--collapsed:hover &__tooltip {
+        opacity: 1;
+        visibility: visible;
+      }
+  
+      &--active, &:hover {
+        --bg-color: #{$fg-color};
+        --fg-color: #{$bg-color};
+  
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+  
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          width: 20px;
+          height: 20px;
+          background: transparent;
+          z-index: 1;
+        }
+        
+        &::before {
+          top: -20px;
+          border-bottom-right-radius: 20px;
+          box-shadow: 7.5px 7.5px 0 7.5px white;
+        }
+        &::after {
+          bottom: -20px;
+          border-top-right-radius: 20px;
+          box-shadow: 7.5px -7.5px 0 7.5px white;
+        }
+      }
+      
+      &--right:hover, &--right#{&}--active {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        
+        &::before, &::after {
+          left: 0;
+          right: auto;
+        }
+  
+        &::before {
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 20px;
+          box-shadow: -7.5px 7.5px 0 7.5px white;
+        }
+        &::after {
+          border-top-right-radius: 0;
+          border-top-left-radius: 20px;
+          box-shadow: -7.5px -7.5px 0 7.5px white;
+        }
+      }
+
+      &--right &__icon {
+        order: 1;
+      }
+      
+      &__icon {
+        min-height: 28px;
+        width: 28px;
+        flex-shrink: 0;
+        background-color: var(--fg-color);
+      }
+  
+      &:nth-child(3n+1) &__icon {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+      }
+      &:nth-child(3n+2) &__icon {
+        clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+      }
+      &:nth-child(3n+3) &__icon {
+        clip-path: polygon(0 50%, 10% 40%, 40% 40%, 15% 0, 85% 0, 60% 40%, 90% 40%, 100% 50%, 90% 60%, 100% 60%, 60% 60%, 85% 100%, 15% 100%, 40% 60%, 10% 60%
+        );
+      }
+  
+    }
+  
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+    
+  &--right &__toggle {
+    align-self: flex-end;
+  }
+}
+

@@ -1,0 +1,19 @@
+.app-sidebar-menu {
+    // display: grid;
+    // grid-auto-flow: column;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 20px;
+
+    &-placement {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    &--right {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+}

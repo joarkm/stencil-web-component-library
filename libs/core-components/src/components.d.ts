@@ -21,6 +21,9 @@ export namespace Components {
         "optionLabels": string[];
         "selectedOption": number;
     }
+    interface SidebarMenu {
+        "placement": 'left' | 'right';
+    }
 }
 declare global {
     interface HTMLExpandButtonElement extends Components.ExpandButton, HTMLStencilElement {
@@ -41,10 +44,17 @@ declare global {
         prototype: HTMLSegmentedControlGroupElement;
         new (): HTMLSegmentedControlGroupElement;
     };
+    interface HTMLSidebarMenuElement extends Components.SidebarMenu, HTMLStencilElement {
+    }
+    var HTMLSidebarMenuElement: {
+        prototype: HTMLSidebarMenuElement;
+        new (): HTMLSidebarMenuElement;
+    };
     interface HTMLElementTagNameMap {
         "expand-button": HTMLExpandButtonElement;
         "segmented-control": HTMLSegmentedControlElement;
         "segmented-control-group": HTMLSegmentedControlGroupElement;
+        "sidebar-menu": HTMLSidebarMenuElement;
     }
 }
 declare namespace LocalJSX {
@@ -65,10 +75,14 @@ declare namespace LocalJSX {
         "optionLabels"?: string[];
         "selectedOption"?: number;
     }
+    interface SidebarMenu {
+        "placement"?: 'left' | 'right';
+    }
     interface IntrinsicElements {
         "expand-button": ExpandButton;
         "segmented-control": SegmentedControl;
         "segmented-control-group": SegmentedControlGroup;
+        "sidebar-menu": SidebarMenu;
     }
 }
 export { LocalJSX as JSX };
@@ -78,6 +92,7 @@ declare module "@stencil/core" {
             "expand-button": LocalJSX.ExpandButton & JSXBase.HTMLAttributes<HTMLExpandButtonElement>;
             "segmented-control": LocalJSX.SegmentedControl & JSXBase.HTMLAttributes<HTMLSegmentedControlElement>;
             "segmented-control-group": LocalJSX.SegmentedControlGroup & JSXBase.HTMLAttributes<HTMLSegmentedControlGroupElement>;
+            "sidebar-menu": LocalJSX.SidebarMenu & JSXBase.HTMLAttributes<HTMLSidebarMenuElement>;
         }
     }
 }
